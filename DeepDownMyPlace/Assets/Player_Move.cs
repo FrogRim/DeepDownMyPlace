@@ -1,48 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player_Move : MonoBehaviour
 {
-    public Sprite[] imgs;
-    public SpriteRenderer current;
-    
+    public float moveSpeed = 5f; // 이동 속도 조절 변수
+    private Rigidbody2D rb;
 
-    Rigidbody2D player_rb;
-    Animator animator;
-    public float _speed = 5.0f;
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        player_rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-       
-        float moveX = 0f;
-        if (Input.GetKeyDown(KeyCode.A))
+        // 입력을 받아 이동
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        // normalized를 사용하여 대각선 이동 속도가 너무 빨라지는 것을 방지
+        Vector2 moveDirection = new Vector2(horizontalInput, verticalInput).normalized;
+
+        // 캐릭터를 이동 방향으로 회전
+        if (moveDirection != Vector2.zero)
         {
-            transform.eulerAngles = new Vector3(0,0,0);
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            transform.eulerAngles = new Vector3(0, 180, 0);
-        }
-
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            player_rb.velocity = (transform.right * -1) * _speed;
+            // 좌우 이동 시에만 회전
+            if (Mathf.Abs(horizontalInput) > 0f)
+            {
+                float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, (horizontalInput > 0f) ? 180f : 0f, 0f);
+            }
         }
 
-
-        if (Input.GetKey(KeyCode.Alpha1)) current.sprite = imgs[0];
-        if (Input.GetKey(KeyCode.Alpha2)) current.sprite = imgs[1];
-        if (Input.GetKey(KeyCode.Alpha3)) current.sprite = imgs[2];
-
-
+        // Rigidbody를 사용하여 이동
+        rb.velocity = moveDirection * moveSpeed;
     }
+
 }
