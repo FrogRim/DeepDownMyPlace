@@ -2,27 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
+ë§µ í¬ê¸°ë¥¼ ë²¡í„°ë¡œ ë°›ê³  ìºë¦­í„° ìœ„ì¹˜ë¥¼ ê³„ì‚°í•˜ì—¬ ë¯¸ë‹ˆë§µ ë¹„ìœ¨ë¡œ ë°”ê¾¸ëŠ” ì½”ë“œ
+*/
 public class UI_Minimap : MonoBehaviour
 {
 
-    //¸Ê ¹üÀ§
+    //ë§µ ë²”ìœ„
     [SerializeField]
-    private Transform top;  //¸ÊÀÇ ÃµÀå
+    private Transform top;  //ë§µì˜ ì²œì¥
     [SerializeField]
-    private Transform bottom;   //¸ÊÀÇ ¹Ù´Ú
+    private Transform bottom;   //ë§µì˜ ë°”ë‹¥
     [SerializeField]
-    private Transform left; //¸ÊÀÇ °¡Àå ¿ŞÂÊ
+    private Transform left; //ë§µì˜ ê°€ì¥ ì™¼ìª½
     [SerializeField]
-    private Transform right;    //¸ÊÀÇ °¡Àå ¿À¸¥ÂÊ
+    private Transform right;    //ë§µì˜ ê°€ì¥ ì˜¤ë¥¸ìª½
     
-    //ÀÌ¹ÌÁö
+    //ì´ë¯¸ì§€ ì˜¤ë¸Œì íŠ¸
     [SerializeField]
     private Image minimapImage;
     [SerializeField]
     private Image minimapPlayerImage;
 
-    //Å¸°Ù ¼³Á¤
+    //íƒ€ê²Ÿ ì„¤ì •
     [SerializeField]
     private Transform targetPlayer;
 
@@ -33,21 +35,23 @@ public class UI_Minimap : MonoBehaviour
 
     void LateUpdate()
     {
-        //¸Ê Å©±â¸¸ÇÑ 2dº¤ÅÍ
+        //ê°€ë¡œ ì„¸ë¡œ Vector3ë¥¼ Vector2ë¡œ ì €ì¥
         Vector2 mapArea = new Vector2(Vector3.Distance(left.position, right.position), Vector3.Distance(bottom.position, top.position));
-        //Å¸ÄÏ Ä³¸¯ÅÍÀÇ À§Ä¡ °è»ê
+        //ë§µ ë‚´ì—ì„œ ìºë¦­í„° ìœ„ì¹˜ ê³„ì‚°
         Vector2 charPos = new Vector2(Vector3.Distance(left.position, new Vector3(targetPlayer.transform.position.x, 0f, 0f)),
             Vector3.Distance(bottom.position, new Vector3(0f, targetPlayer.transform.position.y, 0f)));
         Vector2 normalPos = new Vector2(charPos.x / mapArea.x, charPos.y / mapArea.y);
-
+        
+        //UIì— í‘œì‹œ
         minimapPlayerImage.rectTransform.anchoredPosition = new Vector2(minimapImage.rectTransform.sizeDelta.x * normalPos.x, minimapImage.rectTransform.sizeDelta.y * normalPos.y);
     }
 
+    //ì˜¤í”ˆ ë²„íŠ¼ì— ë“¤ì–´ê°ˆ OnClickEvent
     public void Open()
     {
         gameObject.SetActive(true);
     }
-
+    //ë‹«ê¸° ë²„íŠ¼ì— ë“¤ì–´ê°ˆ OnClickEvent
     public void Close()
     {
         gameObject.SetActive(false);
