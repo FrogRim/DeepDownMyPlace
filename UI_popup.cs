@@ -1,26 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+íŒì—… UIì— ë“¤ì–´ê°ˆ ì»´í¬ë„ŒíŠ¸
+*/
 public class UI_popup : MonoBehaviour
 {
-    //UI ¿ÀÇÁÁ§Æ®
+    //UI ì˜¤í”„ì íŠ¸
     public GameObject popupObject;
 
     private bool Tabstate = false;
 
-    //ÆË¾÷ Å°. ±âº»¼³Á¤ tab
+    //íŒì—… í‚¤. ê¸°ë³¸ì„¤ì • tab
     public KeyCode pop = KeyCode.Tab;
-    //´İ´Â Å°. ±âº»¼³Á¤ esc
+    //ë‹«ëŠ” í‚¤. ê¸°ë³¸ì„¤ì • esc
     public KeyCode close = KeyCode.Escape;
 
     void Update()
     {
-        isTabKeyPressed();
         _UIpop();
     }
 
-    public void isTabKeyPressed()
+    public void _UIpop
     {
         if (Input.GetKey(pop))
         {
@@ -30,14 +31,5 @@ public class UI_popup : MonoBehaviour
         {
             popupObject.SetActive(false);
         }       
-    }
-
-    //UI È°¼ºÈ­
-    public void _UIpop()
-    {
-        if (Tabstate)
-        {
-            popupObject.SetActive(true);
-        }
     }
 }
