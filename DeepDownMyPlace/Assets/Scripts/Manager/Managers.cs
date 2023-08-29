@@ -14,12 +14,12 @@ public class Managers : MonoBehaviour
         }
     }
 
-    DataManager _data = new DataManager(); // DataManager 추가
-    public static DataManager Data // DataManager를 사용하고 싶으면 Managers.Data로 접근
+    ScriptManager _script = new ScriptManager(); // DataManager 추가
+    public static ScriptManager Script // DataManager를 사용하고 싶으면 Managers.Data로 접근
     {
         get
         {
-            return Instance._data;
+            return Instance._script;
         }
     }
 
@@ -79,6 +79,7 @@ public class Managers : MonoBehaviour
 
   
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,7 +106,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
 
-            s_instance._data.Init(); // DataManager에서 초기화 부분 추가
+            s_instance._script.Init(); // DataManager에서 초기화 부분 추가
             s_instance._pool.Init();
             s_instance._sound.Init();
         }

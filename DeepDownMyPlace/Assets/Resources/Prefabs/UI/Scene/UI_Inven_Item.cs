@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UI_Inven_Item : UI_Base
 {
     public int itemnum;
-    weapon weapon;
+   
     
 
     enum GameObjects
@@ -23,7 +23,7 @@ public class UI_Inven_Item : UI_Base
     void Start()
     {
         Init();
-        weapon = GameObject.Find("MC01").GetComponent<weapon>();
+        
     }
 
     public override void Init()
@@ -44,13 +44,6 @@ public class UI_Inven_Item : UI_Base
 
     private void Update()
     {
-        if (weapon.weaponIndex == itemnum - 1)
-        {
-            Get<GameObject>((int)GameObjects.ItemIcon).GetComponent<Image>().color = new Color32(255, 0, 0, 255);
-        }
-        else
-        {
-            Get<GameObject>((int)GameObjects.ItemIcon).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-        }
+        
     }
 }
