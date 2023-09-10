@@ -1,17 +1,17 @@
 {
-  "script": [
+  "Scripts": [
     {
-      "number": "1",
+      "number": 1,
       "name": "Player",
       "script": "후회하시나요?"
     },
     {
-      "number": "2",
+      "number": 2,
       "name": "Player",
       "script": "......"
     },
     {
-      "number": "3",
+      "number": 3,
       "name": "Player",
       "script": "네."
     }

@@ -106,7 +106,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
 
-            s_instance._script.Init(); // DataManager에서 초기화 부분 추가
+            //s_instance._script.Init(); // ScriptManager 초기화
             s_instance._pool.Init();
             s_instance._sound.Init();
         }
@@ -114,6 +114,7 @@ public class Managers : MonoBehaviour
 
     public static void Clear() // Scene이 바뀔때 초기화
     {
+       
         Input.Clear();
         Scene.Clear();
         Sound.Clear();

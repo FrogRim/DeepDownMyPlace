@@ -10,7 +10,7 @@ public class Script // Scripts 리스트의 각 아이템들
 {
     // public으로 만들고 싶지 않다면 SerializeField 이용
     public int number;
-    public int name;
+    public string name;
     public string script;
     // 변수 이름을 JSON파일과 똑같이 맞춰줘야함
 }
@@ -20,13 +20,21 @@ public class ScriptData : ILoader<int, Script> // Scripts 리스트 // Scripts 리스
 {
     public List<Script> Scripts = new List<Script>();
 
+    public ScriptData()
+    {
+        Scripts = new List<Script>(); // 생성자에서 초기화
+    }
+
+
     public Dictionary<int, Script> MakeDict()
     {
+        
         Dictionary<int, Script> dict = new Dictionary<int, Script>();
         //Scripts.ToDictionary(); // IOS에서 버그가 많아 아래 방법 이용
         foreach (Script Script in Scripts) // Scripts 리스트를 돌며
         {
             dict.Add(Script.number, Script); // dict에 각 Script정보 추가
+            
         }
 
         return dict; // dict를 return
