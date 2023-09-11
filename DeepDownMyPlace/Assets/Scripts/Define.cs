@@ -8,8 +8,16 @@ public class Define
     {
         Unknown,
         Login,
-        Lobby,
-        Game
+        Game,
+        Library,
+        Class1,
+        Class2,
+        Class3,
+        Class4,
+        Class5,
+        Science,
+        Music,
+        Staffroom
     }
 
     public enum Sound // Sound 타입 관리
@@ -24,6 +32,12 @@ public class Define
         QuarterView
     }
 
+    public enum Character
+    {
+        Player,
+        Follower
+    }
+
     public enum MouseEvent
     {
         Press,
@@ -36,12 +50,5 @@ public class Define
         Drag
     }
 
-    public enum Element
-    {
-        Spade,
-        Diaamond,
-        Heart,
-        Club,
-        Count
-    }
+   
 }
